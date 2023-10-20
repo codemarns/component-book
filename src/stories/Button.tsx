@@ -1,4 +1,4 @@
-import React from 'react';
+// import React from 'react';
 import './button.css';
 
 interface ButtonProps {
@@ -42,7 +42,7 @@ export const Button = ({
       style={{ backgroundColor }}
       {...props}
     >
-      {label}
+      {label}!
     </button>
   );
 };
