@@ -50,7 +50,7 @@ const Button: React.FC<TButtonProps> = (props) => {
       aria-disabled={disabled || loading}
       aria-label={label}
     >
-      {label || children}
+      {loading ? "Loading..." : label || children}
     </button>
   );
 };
