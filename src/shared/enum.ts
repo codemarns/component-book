@@ -1,3 +1,4 @@
+// COLOR
 export enum ColorEnum {
   primary,
   secondary,
@@ -9,7 +10,6 @@ export enum ColorEnum {
   black,
   white,
 }
-
 export enum DefaultColorEnum {
   primary = ColorEnum.primary,
   secondary = ColorEnum.secondary,
@@ -18,4 +18,12 @@ export enum DefaultColorEnum {
   warning = ColorEnum.warning,
   danger = ColorEnum.danger,
   default = ColorEnum.default,
+}
+
+// SIZE
+export enum SizeEnum {
+  sm,
+  md,
+  lg,
+  xl,
 }
