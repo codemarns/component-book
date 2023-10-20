@@ -1,1 +1,2 @@
-export { buttonStyles } from './buttonStyles'
+export { buttonStyles } from "./buttonStyles";
+export { iconStyles } from "./iconStyles";
