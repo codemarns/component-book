@@ -1,7 +1,8 @@
 import React from "react";
 import cn from "classnames";
+import { Icon } from "../Icon";
+import { DefaultColorEnum, SizeEnum } from "../../shared";
 import { buttonStyles } from "../../styles";
-import { DefaultColorEnum } from "../../shared";
 
 type TButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   icon?: string;
@@ -9,10 +10,10 @@ type TButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   loading?: boolean;
   disabled?: boolean;
   layout?: "auto" | "block";
-  size?: "sm" | "md" | "lg" | "xl";
   type?: "button" | "reset" | "submit";
   variant?: "solid" | "outline" | "ghost";
   corner?: "flat" | "soft-edge" | "rounded";
+  size?: keyof typeof SizeEnum;
   color?: keyof typeof DefaultColorEnum;
 };
 
@@ -59,12 +60,9 @@ const Button: React.FC<TButtonProps> = (props) => {
       aria-label={label}
     >
       {icon && (
-        <i
-          className={cn(
-            { ["cm-icon-" + icon]: icon },
-            root.icon.base,
-            root.icon.sizes[size]
-          )}
+        <Icon
+          name={loading ? "spinner" : icon}
+          className={cn({ [root.icon.base]: loading })}
         />
       )}
       {loading ? "Loading..." : label || children}
