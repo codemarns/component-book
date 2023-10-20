@@ -182,3 +182,6 @@
 .cm-icon-world:before {
   content: "\56";
 }
+.cm-icon-spinner:before {
+  content: "\57";
+}
