@@ -8,6 +8,7 @@ type TButtonProps = React.HTMLAttributes<HTMLButtonElement> & {
   loading?: boolean;
   disabled?: boolean;
   size?: "sm" | "md" | "lg" | "xl";
+  type?: "button" | "reset" | "submit";
   variant?: "solid" | "outline" | "ghost";
   corner?: "flat" | "soft-edge" | "rounded";
   color?: keyof typeof DefaultColorEnum;
@@ -20,6 +21,7 @@ const Button: React.FC<TButtonProps> = (props) => {
     children,
     id = "button",
     size = "md",
+    type = "button",
     color = "primary",
     variant = "solid",
     corner = "soft-edge",
@@ -46,6 +48,7 @@ const Button: React.FC<TButtonProps> = (props) => {
     <button
       {...restProps}
       id={id}
+      type={type}
       className={baseClasses}
       aria-disabled={disabled || loading}
       aria-label={label}

@@ -58,6 +58,12 @@ const meta: Meta<typeof Button> = {
       options: ["sm", "md", "lg", "xl"],
       control: { type: "select" },
     },
+    type: {
+      defaultValue: "button",
+      description: "Component type. (Inspect to see the type attributes)",
+      options: ["button", "reset", "submit"],
+      control: { type: "radio" },
+    },
   },
 };
 export default meta;
@@ -69,6 +75,7 @@ export const Default: Story = {
     id: "button",
     label: "Button",
     size: "md",
+    type: "button",
     color: "primary",
     variant: "solid",
     corner: "soft-edge",
