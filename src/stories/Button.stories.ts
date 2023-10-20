@@ -16,6 +16,11 @@ const meta: Meta<typeof Button> = {
       description: "Component label.",
       type: "string",
     },
+    icon: {
+      defaultValue: "like",
+      description: "Component icon.",
+      type: "string",
+    },
     disabled: {
       defaultValue: false,
       description: "Component disable state.",
@@ -25,6 +30,12 @@ const meta: Meta<typeof Button> = {
       defaultValue: false,
       description: "Component loading state.",
       type: "boolean",
+    },
+    layout: {
+      defaultValue: "auto",
+      description: "Component layouts.",
+      options: ["auto", "block"],
+      control: { type: "radio" },
     },
     color: {
       defaultValue: "primary",
@@ -74,8 +85,10 @@ export const Default: Story = {
   args: {
     id: "button",
     label: "Button",
-    size: "md",
+    icon: "heart",
+    layout: "auto",
     type: "button",
+    size: "md",
     color: "primary",
     variant: "solid",
     corner: "soft-edge",
