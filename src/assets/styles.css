@@ -185,3 +185,12 @@
 .cm-icon-spinner:before {
   content: "\57";
 }
+.cm-icon-plus:before {
+  content: "\58";
+}
+.cm-icon-minus:before {
+  content: "\59";
+}
+.cm-icon-plus-1:before {
+  content: "\5a";
+}
