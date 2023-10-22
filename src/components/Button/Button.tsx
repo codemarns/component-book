@@ -46,7 +46,10 @@ const Button: React.FC<TButtonProps> = (props) => {
     disabled || loading
       ? [root.cursors.disable, root.variants[variant].colors[color].disable]
       : [root.cursors.default, root.variants[variant].colors[color].default],
-    layout === "block" ? root.block.base : "",
+    {
+      [root.block.base]: layout === "block",
+      [root.widthSizes[size]]: !(label || children),
+    },
     className
   );
 

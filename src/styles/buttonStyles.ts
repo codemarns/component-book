@@ -19,6 +19,13 @@ export const buttonStyles = {
       "soft-edge": "rounded-md",
       rounded: "rounded-full",
     },
+    // NOTE: IF NO LABEL OR CHILDREN
+    widthSizes: {
+      sm: "w-8 !p-0",
+      md: "w-10 !p-0",
+      lg: "w-12 !p-0",
+      xl: "w-14 !p-0",
+    },
     variants: {
       solid: {
         colors: {
