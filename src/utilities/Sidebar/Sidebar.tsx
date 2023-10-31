@@ -32,19 +32,9 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
   const { main, sidebar, wrapper, container, header, content, footer } =
     layoutStyles;
 
-  const sidebarClasses = cn(
-    sidebar.base,
-    showSidebar
-      ? sidebar.appearance[appearance].show
-      : sidebar.appearance[appearance].hide
-  );
+  const sidebarClasses = cn(sidebar.base);
 
-  const wrapperClasses = cn(
-    wrapper.base,
-    showSidebar
-      ? wrapper.appearance[appearance].transition[transition].addPadding
-      : wrapper.appearance[appearance].transition[transition].removePadding
-  );
+  const wrapperClasses = cn(wrapper.base);
 
   return (
     <main className={main.base}>
@@ -55,7 +45,7 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
               size="lg"
               path="M6 18L18 6M6 6l12 12"
               className={sidebar.header.icon.base}
-              onClick={toggleSidebar}
+              // onClick={toggleSidebar}
             />
           )}
         </div>
@@ -71,10 +61,17 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
             />
           </header>
           <div className={content.base}>
-            <span className="block">{`window.innerWidth >= 1024`}: <b>{screenSize ? "true" : "false"}</b></span>
+            <span className="block">
+              {`window.innerWidth >= 1024`}:{" "}
+              <b>{screenSize ? "true" : "false"}</b>
+            </span>
             <hr />
-            <span className="block">appearance: <b>{appearance}</b></span>
-            <span className="block">transition: <b>{transition}</b></span>
+            <span className="block">
+              appearance: <b>{appearance}</b>
+            </span>
+            <span className="block">
+              transition: <b>{transition}</b>
+            </span>
           </div>
           <footer className={footer.base}>Footer</footer>
         </div>

@@ -1,4 +1,4 @@
 export type SidebarProps = {
-  appearance?: "minimize" | "hide";
+  appearance?: "minimize" | "expand";
   transition?: "overlay" | "move along";
 };

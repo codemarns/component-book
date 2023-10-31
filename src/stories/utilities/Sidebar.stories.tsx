@@ -10,7 +10,7 @@ const meta: Meta<typeof Sidebar> = {
     appearance: {
       defaultValue: "minimize",
       description: "Sidebar appearance.",
-      options: ["minimize", "hide"],
+      options: ["minimize", "expand"],
       control: "radio",
     },
     transition: {
