@@ -7,15 +7,10 @@ const meta: Meta<typeof Sidebar> = {
   title: "Utilities/Sidebar",
   tags: ["autodocs"],
   argTypes: {
-    appearance: {
-      defaultValue: "minimize",
-      description: "Sidebar appearance.",
-      options: ["minimize", "expand"],
-      control: "radio",
-    },
     transition: {
       defaultValue: "move along",
-      description: "Sidebar transition for mobile responsiveness. You can check the effects on screen below 1024 pixels.",
+      description:
+        "Sidebar transition for mobile responsiveness. NOTE: overlay works only on screen below 1024 pixels.",
       options: ["move along", "overlay"],
       control: "radio",
     },
@@ -27,7 +22,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    appearance: "minimize",
     transition: "move along",
   },
   parameters: {

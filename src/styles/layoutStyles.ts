@@ -3,7 +3,15 @@ export const layoutStyles = {
     base: "h-screen w-screen bg-primary-50 text-default-800 overflow-hidden",
   },
   sidebar: {
-    base: "fixed inset-0 z-[1] !right-0 h-full w-[80px] xl:w-[256px] bg-default-900 text-default-50 duration-500 ease transition-all",
+    base: "fixed inset-0 z-[1] !right-0 h-full bg-default-900 text-default-50 duration-500 ease transition-all",
+    appearance: {
+      expand: {
+        base: "w-[256px]",
+      },
+      minimize: {
+        base: "w-[80px]",
+      },
+    },
     header: {
       base: "h-16 px-4 flex-1 flex items-center justify-end",
       icon: {
@@ -12,7 +20,29 @@ export const layoutStyles = {
     },
   },
   wrapper: {
-    base: "h-full w-full pl-[80px] xl:pl-[256px] overflow-hidden duration-500 ease transition-all",
+    base: "h-full w-full overflow-hidden duration-500 ease transition-all",
+    transition: {
+      "move along": {
+        appearance: {
+          expand: {
+            base: "pl-[256px]",
+          },
+          minimize: {
+            base: "pl-[80px]",
+          },
+        },
+      },
+      overlay: {
+        appearance: {
+          expand: {
+            base: "pl-[80px] lg:pl-[256px]",
+          },
+          minimize: {
+            base: "pl-[80px]",
+          },
+        },
+      },
+    },
   },
   container: {
     base: "relative h-full min-h-full w-full overflow-x-hidden overflow-y-auto duration-500 ease transition-all",

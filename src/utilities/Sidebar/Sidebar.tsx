@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
-import { SidebarProps } from "./types";
-import { layoutStyles } from "../../styles";
 import { SvgIcon } from "../../components";
+import { layoutStyles } from "../../styles";
+import { SidebarProps } from ".";
 
 export const Sidebar: React.FC<SidebarProps> = (props) => {
-  const { appearance = "minimize", transition = "move along" } = props;
+  const { transition = "move along" } = props;
 
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [expandSidebar, setExpandSidebar] = useState(true);
   const [screenSize, setScreenSize] = useState(window.innerWidth >= 1024);
 
   useEffect(() => {
-    setShowSidebar(screenSize ? true : false);
+    setExpandSidebar(screenSize ? true : false);
   }, [screenSize]);
 
   useEffect(() => {
@@ -26,26 +26,38 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
   }, [screenSize]);
 
   const toggleSidebar = () => {
-    setShowSidebar(!showSidebar);
+    setExpandSidebar(!expandSidebar);
   };
 
   const { main, sidebar, wrapper, container, header, content, footer } =
     layoutStyles;
 
-  const sidebarClasses = cn(sidebar.base);
+  const sidebarClasses = cn(
+    sidebar.base,
+    expandSidebar
+      ? sidebar.appearance.expand.base
+      : sidebar.appearance.minimize.base
+  );
 
-  const wrapperClasses = cn(wrapper.base);
+  const wrapperClasses = cn(
+    wrapper.base,
+    expandSidebar
+      ? wrapper.transition[transition].appearance.expand.base
+      : wrapper.transition[transition].appearance.minimize.base
+  );
+
+  console.log("Expand Sidebar:", expandSidebar);
 
   return (
     <main className={main.base}>
       <aside className={sidebarClasses}>
         <div className={sidebar.header.base}>
-          {transition === "overlay" && !screenSize && (
+          {transition === "overlay" && expandSidebar && !screenSize && (
             <SvgIcon
               size="lg"
               path="M6 18L18 6M6 6l12 12"
               className={sidebar.header.icon.base}
-              // onClick={toggleSidebar}
+              onClick={toggleSidebar}
             />
           )}
         </div>
@@ -61,16 +73,18 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
             />
           </header>
           <div className={content.base}>
-            <span className="block">
-              {`window.innerWidth >= 1024`}:{" "}
-              <b>{screenSize ? "true" : "false"}</b>
+            <span>
+              Expand Sidebar:{" "}
+              <b className={expandSidebar ? "text-primary" : "text-default"}>
+                {expandSidebar ? "true" : "false"}
+              </b>
             </span>
             <hr />
-            <span className="block">
-              appearance: <b>{appearance}</b>
-            </span>
-            <span className="block">
-              transition: <b>{transition}</b>
+            <span>
+              {`Window Size >= 1024: `}
+              <b className={screenSize ? "text-primary" : "text-default"}>
+                {screenSize ? "true" : "false"}
+              </b>
             </span>
           </div>
           <footer className={footer.base}>Footer</footer>
