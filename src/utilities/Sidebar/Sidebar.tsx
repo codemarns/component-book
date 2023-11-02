@@ -2,28 +2,28 @@ import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { SvgIcon } from "../../components";
 import { layoutStyles } from "../../styles";
-import { SidebarProps } from ".";
+import { SidebarProps } from "./types";
 
-export const Sidebar: React.FC<SidebarProps> = (props) => {
-  const { transition = "move along" } = props;
-
+export const Sidebar: React.FC<SidebarProps> = () => {
   const [expandSidebar, setExpandSidebar] = useState(true);
-  const [screenSize, setScreenSize] = useState(window.innerWidth >= 1024);
+  const [mobileScreen, setMobileScreen] = useState(window.innerWidth <= 768);
+  const [defaultScreen, setDefaultScreen] = useState(window.innerWidth >= 1280);
 
   useEffect(() => {
-    setExpandSidebar(screenSize ? true : false);
-  }, [screenSize]);
+    setExpandSidebar(defaultScreen ? true : false);
+  }, [defaultScreen]);
 
   useEffect(() => {
     const updateDimension = () => {
-      setScreenSize(window.innerWidth >= 1024);
+      setMobileScreen(window.innerWidth <= 768);
+      setDefaultScreen(window.innerWidth >= 1280);
     };
 
     window.addEventListener("resize", updateDimension);
     return () => {
       window.removeEventListener("resize", updateDimension);
     };
-  }, [screenSize]);
+  }, [defaultScreen, mobileScreen]);
 
   const toggleSidebar = () => {
     setExpandSidebar(!expandSidebar);
@@ -34,25 +34,37 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
 
   const sidebarClasses = cn(
     sidebar.base,
-    expandSidebar
-      ? sidebar.appearance.expand.base
-      : sidebar.appearance.minimize.base
+    mobileScreen
+      ? expandSidebar
+        ? sidebar.screen.mobile.appearance.show.base
+        : sidebar.screen.mobile.appearance.hide.base
+      : defaultScreen
+      ? expandSidebar
+        ? sidebar.screen.default.appearance.expand.base
+        : sidebar.screen.default.appearance.minimize.base
+      : expandSidebar
+      ? sidebar.screen.default.appearance.expand.base
+      : sidebar.screen.default.appearance.minimize.base
   );
 
   const wrapperClasses = cn(
     wrapper.base,
-    expandSidebar
-      ? wrapper.transition[transition].appearance.expand.base
-      : wrapper.transition[transition].appearance.minimize.base
+    mobileScreen
+      ? wrapper.screen.mobile.base
+      : defaultScreen
+      ? expandSidebar
+        ? wrapper.screen.default.appearance.auto.base
+        : wrapper.screen.default.appearance.contain.base
+      : expandSidebar
+      ? wrapper.screen.default.appearance.auto.base
+      : wrapper.screen.default.appearance.contain.base
   );
-
-  console.log("Expand Sidebar:", expandSidebar);
 
   return (
     <main className={main.base}>
       <aside className={sidebarClasses}>
         <div className={sidebar.header.base}>
-          {transition === "overlay" && expandSidebar && !screenSize && (
+          {expandSidebar && !defaultScreen && (
             <SvgIcon
               size="lg"
               path="M6 18L18 6M6 6l12 12"
@@ -75,15 +87,22 @@ export const Sidebar: React.FC<SidebarProps> = (props) => {
           <div className={content.base}>
             <span>
               Expand Sidebar:{" "}
-              <b className={expandSidebar ? "text-primary" : "text-default"}>
+              <b className={expandSidebar ? "text-success" : "text-default"}>
                 {expandSidebar ? "true" : "false"}
               </b>
             </span>
             <hr />
             <span>
               {`Window Size >= 1024: `}
-              <b className={screenSize ? "text-primary" : "text-default"}>
-                {screenSize ? "true" : "false"}
+              <b className={defaultScreen ? "text-success" : "text-default"}>
+                {defaultScreen ? "true" : "false"}
+              </b>
+            </span>
+            <hr />
+            <span>
+              {`Mobile Size <= 768: `}
+              <b className={mobileScreen ? "text-success" : "text-default"}>
+                {mobileScreen ? "true" : "false"}
               </b>
             </span>
           </div>

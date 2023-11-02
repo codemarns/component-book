@@ -6,24 +6,14 @@ const meta: Meta<typeof Sidebar> = {
   component: Sidebar,
   title: "Utilities/Sidebar",
   tags: ["autodocs"],
-  argTypes: {
-    transition: {
-      defaultValue: "move along",
-      description:
-        "Sidebar transition for mobile responsiveness. NOTE: overlay works only on screen below 1024 pixels.",
-      options: ["move along", "overlay"],
-      control: "radio",
-    },
-  },
+  argTypes: {},
 };
 export default meta;
 
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    transition: "move along",
-  },
+  args: {},
   parameters: {
     layout: "fullscreen",
   },

@@ -4,12 +4,27 @@ export const layoutStyles = {
   },
   sidebar: {
     base: "fixed inset-0 z-[1] !right-0 h-full bg-default-900 text-default-50 duration-500 ease transition-all",
-    appearance: {
-      expand: {
-        base: "w-[256px]",
+    // min-width
+    screen: {
+      default: {
+        appearance: {
+          expand: {
+            base: "w-[256px]",
+          },
+          minimize: {
+            base: "w-[80px]",
+          },
+        },
       },
-      minimize: {
-        base: "w-[80px]",
+      mobile: {
+        appearance: {
+          show: {
+            base: "w-[256px] ml-0",
+          },
+          hide: {
+            base: "w-[256px] -ml-[256px]",
+          },
+        },
       },
     },
     header: {
@@ -21,26 +36,20 @@ export const layoutStyles = {
   },
   wrapper: {
     base: "h-full w-full overflow-hidden duration-500 ease transition-all",
-    transition: {
-      "move along": {
+    // min-width
+    screen: {
+      default: {
         appearance: {
-          expand: {
-            base: "pl-[256px]",
+          auto: {
+            base: "pl-[80px] xl:pl-[256px]",
           },
-          minimize: {
+          contain: {
             base: "pl-[80px]",
           },
         },
       },
-      overlay: {
-        appearance: {
-          expand: {
-            base: "pl-[80px] lg:pl-[256px]",
-          },
-          minimize: {
-            base: "pl-[80px]",
-          },
-        },
+      mobile: {
+        base: "pl-0",
       },
     },
   },
