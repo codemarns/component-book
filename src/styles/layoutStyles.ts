@@ -3,7 +3,7 @@ export const layoutStyles = {
     base: "h-screen w-screen bg-primary-50 text-default-800 overflow-hidden",
   },
   sidebar: {
-    base: "fixed inset-0 z-[1] !right-0 h-full bg-default-900 text-default-50 duration-500 ease transition-all",
+    base: "fixed inset-0 z-[1] !right-0 h-full bg-default-900 text-default-200 font-light tracking-wider duration-500 ease transition-all overflow-x-hidden overflow-y-auto",
     // min-width
     screen: {
       default: {
@@ -28,7 +28,7 @@ export const layoutStyles = {
       },
     },
     header: {
-      base: "h-16 px-4 flex-1 flex items-center justify-end",
+      base: "sticky top-0 z-[1] h-16 w-[256px] px-3 bg-default-900 flex items-center gap-2",
       icon: {
         base: "cursor-pointer",
       },

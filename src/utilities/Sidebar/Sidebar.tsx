@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
-import { SvgIcon } from "../../components";
+import { Header } from "./components/Header";
+import { Sidebar as Aside } from "./components/Sidebar";
 import { layoutStyles } from "../../styles";
 import { SidebarProps } from "./types";
 
@@ -29,23 +30,7 @@ export const Sidebar: React.FC<SidebarProps> = () => {
     setExpandSidebar(!expandSidebar);
   };
 
-  const { main, sidebar, wrapper, container, header, content, footer } =
-    layoutStyles;
-
-  const sidebarClasses = cn(
-    sidebar.base,
-    mobileScreen
-      ? expandSidebar
-        ? sidebar.screen.mobile.appearance.show.base
-        : sidebar.screen.mobile.appearance.hide.base
-      : defaultScreen
-      ? expandSidebar
-        ? sidebar.screen.default.appearance.expand.base
-        : sidebar.screen.default.appearance.minimize.base
-      : expandSidebar
-      ? sidebar.screen.default.appearance.expand.base
-      : sidebar.screen.default.appearance.minimize.base
-  );
+  const { main, wrapper, container, content, footer } = layoutStyles;
 
   const wrapperClasses = cn(
     wrapper.base,
@@ -61,29 +46,16 @@ export const Sidebar: React.FC<SidebarProps> = () => {
   );
 
   return (
-    <main className={main.base}>
-      <aside className={sidebarClasses}>
-        <div className={sidebar.header.base}>
-          {expandSidebar && !defaultScreen && (
-            <SvgIcon
-              size="lg"
-              path="M6 18L18 6M6 6l12 12"
-              className={sidebar.header.icon.base}
-              onClick={toggleSidebar}
-            />
-          )}
-        </div>
-      </aside>
+    <main className={cn("responsive-layout", main.base)}>
+      <Aside
+        defaultScreen={defaultScreen}
+        expandSidebar={expandSidebar}
+        mobileScreen={mobileScreen}
+        onClick={toggleSidebar}
+      />
       <div className={wrapperClasses}>
         <div className={container.base}>
-          <header className={header.base}>
-            <SvgIcon
-              size="lg"
-              path="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              className={header.icon.base}
-              onClick={toggleSidebar}
-            />
-          </header>
+          <Header onClick={toggleSidebar} />
           <div className={content.base}>
             <span>
               Expand Sidebar:{" "}
